@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+playwright
+pandas
+jinja2
+python-multipart
+httpx
+python-dotenv
