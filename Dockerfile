@@ -1,5 +1,6 @@
 FROM python:3.11-slim
 
+# 安裝系統依賴
 RUN apt-get update && apt-get install -y \
     chromium \
     libnss3 \
@@ -20,8 +21,11 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 COPY . /app
 
+# 安裝 Python 套件
 RUN pip install --no-cache-dir -r requirements.txt
-RUN playwright install --with-deps chromium
+
+# 強制安裝 Playwright 瀏覽器（重要！）
+RUN playwright install chromium --with-deps
 
 ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 ENV PYTHONUNBUFFERED=1
